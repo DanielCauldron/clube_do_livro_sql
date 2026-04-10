@@ -1,7 +1,6 @@
 # 📊 Análise de Vendas - Clube do Livro (SQL)
 
 Este projeto simula um sistema de vendas de uma livraria, com foco em análise de dados utilizando SQL.
-
 O objetivo é transformar dados brutos de vendas em **informações estratégicas para tomada de decisão**.
 
 ---
@@ -37,23 +36,18 @@ Com uso de:
 ## 📈 Análises Realizadas
 
 ### 🔹 Vendas por vendedor
-
 Identifica os vendedores com maior volume de vendas.
 
 ### 🔹 Performance de produtos
-
 Mostra quais livros têm maior saída.
 
 ### 🔹 Controle de estoque
-
 Calcula estoque restante com base nas vendas.
 
 ### 🔹 Vendas por data
-
 Permite análise temporal do desempenho.
 
 ### 🔹 Faturamento total
-
 Calcula receita gerada por vendedor.
 
 ---
@@ -76,7 +70,7 @@ Calcula receita gerada por vendedor.
 
 ## 🚀 Conclusão
 
-Este projeto demonstra a aplicação de SQL para análise de dados de negócio, indo além de consultas básicas e explorando cenários reais de tomada de decisão.
+Este projeto aplica SQL para análise de dados de negócio, explorando modelagem relacional e consultas orientadas à decisão.
 
 ---
 
@@ -85,3 +79,10 @@ Este projeto demonstra a aplicação de SQL para análise de dados de negócio, 
 1. Execute o script SQL em um banco PostgreSQL
 2. As tabelas e dados serão criados automaticamente
 3. Rode as consultas ao final do script para visualizar as análises
+
+---
+
+## 👨‍💻 Autor
+
+**Daniel Caldeirão**
+[LinkedIn](https://www.linkedin.com/in/daniel-cauldron/) • [GitHub](https://github.com/DanielCauldron)
