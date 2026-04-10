@@ -1,43 +1,87 @@
-# 📚 Clube do Livro - Projeto SQL
+# 📊 Análise de Vendas - Clube do Livro (SQL)
 
-Este projeto é um exemplo de banco de dados para uma livraria, feito para praticar SQL e modelagem de dados.  
-Ele inclui o esquema, tabelas, inserção de dados e consultas úteis.
+Este projeto simula um sistema de vendas de uma livraria, com foco em análise de dados utilizando SQL.
 
-## Estrutura do Banco
-
-O banco possui as seguintes tabelas:
-
-- **livros**: Armazena os livros disponíveis, com nome, autor, editora e preço.
-- **estoque**: Controla a quantidade de cada livro disponível.
-- **vendedores**: Cadastro dos vendedores da livraria.
-- **vendas**: Registra cada venda feita, com vendedor, livro, quantidade e data.
-
-## Funcionalidades
-
-- Criação do schema e tabelas com relacionamentos (chaves primárias e estrangeiras).
-- Inserção de dados de exemplo em todas as tabelas.
-- Consultas para:
-  - Total de livros vendidos por vendedor.
-  - Total vendido de cada livro.
-  - Estoque restante de cada livro.
-  - Total de vendas por data.
-  - Valor total vendido por vendedor.
-
-## Como usar
-
-1. Abra o arquivo `create-schema-template.sql`.
-2. Execute o script em um banco PostgreSQL (ou compatível).
-3. As tabelas serão criadas e preenchidas com dados de exemplo.
-4. Use as consultas do final do arquivo para visualizar os resultados.
-
-## Tecnologias
-
-- SQL (PostgreSQL/MySQL)
-- VSCode
-
-## Observações
-
-- O projeto serve para estudo e prática de SQL.
-- Os dados são fictícios e podem ser alterados conforme necessário.
+O objetivo é transformar dados brutos de vendas em **informações estratégicas para tomada de decisão**.
 
 ---
+
+## 🎯 Objetivo
+
+Analisar o desempenho de vendas, estoque e faturamento para responder perguntas de negócio como:
+
+* Quem são os vendedores com melhor desempenho?
+* Quais livros vendem mais?
+* Como está o controle de estoque?
+* Qual o faturamento por vendedor?
+
+---
+
+## 🧱 Modelagem de Dados
+
+O banco foi estruturado com 4 tabelas principais:
+
+* **livros** → catálogo de produtos
+* **estoque** → controle de disponibilidade
+* **vendedores** → equipe comercial
+* **vendas** → transações realizadas
+
+Com uso de:
+
+* Chaves primárias (PK)
+* Chaves estrangeiras (FK)
+* Relacionamentos entre tabelas
+
+---
+
+## 📈 Análises Realizadas
+
+### 🔹 Vendas por vendedor
+
+Identifica os vendedores com maior volume de vendas.
+
+### 🔹 Performance de produtos
+
+Mostra quais livros têm maior saída.
+
+### 🔹 Controle de estoque
+
+Calcula estoque restante com base nas vendas.
+
+### 🔹 Vendas por data
+
+Permite análise temporal do desempenho.
+
+### 🔹 Faturamento total
+
+Calcula receita gerada por vendedor.
+
+---
+
+## 🛠️ Tecnologias
+
+* SQL (PostgreSQL)
+* Modelagem de dados relacional
+
+---
+
+## 💡 Insights Gerados
+
+* Identificação de vendedores mais produtivos
+* Produtos com maior demanda
+* Possíveis riscos de falta de estoque
+* Visão de faturamento por responsável
+
+---
+
+## 🚀 Conclusão
+
+Este projeto demonstra a aplicação de SQL para análise de dados de negócio, indo além de consultas básicas e explorando cenários reais de tomada de decisão.
+
+---
+
+## 📂 Como executar
+
+1. Execute o script SQL em um banco PostgreSQL
+2. As tabelas e dados serão criados automaticamente
+3. Rode as consultas ao final do script para visualizar as análises
