@@ -1,7 +1,12 @@
---Script para criar o schema e as tabelas do clube do livro
+-- Script para criar o schema e as tabelas do clube do livro
 CREATE SCHEMA IF NOT EXISTS clube_do_livro;
 SET search_path TO clube_do_livro;
---Tabela de livros
+
+-- ======================================
+-- CRIANDO AS TABELAS
+-- ======================================
+
+-- Tabela de livros
 CREATE TABLE livros (
     id_livro SERIAL PRIMARY KEY,         -- SERIAL = inteiro que auto incrementa
     nome_livro VARCHAR(100) NOT NULL,    -- Nome do livro (até 100 caracteres)
@@ -9,7 +14,8 @@ CREATE TABLE livros (
     editora VARCHAR(100) NOT NULL,       -- Nome da editora
     preco NUMERIC(5,2) NOT NULL          -- Preço do livro com 2 casas decimais
 );
---Tabela de estoque
+
+-- Tabela de estoque
 CREATE TABLE estoque (
     id_livro INT PRIMARY KEY,            -- Relaciona com o livro
     qtd_estoque INT NOT NULL,            -- Quantidade disponível
@@ -18,12 +24,14 @@ CREATE TABLE estoque (
         REFERENCES livros (id_livro)
         ON DELETE NO ACTION              -- Se tentar apagar o livro, o estoque bloqueia
 );
---Tabela de vendedores e vendas
+
+-- Tabela de vendedores
 CREATE TABLE vendedores (
     id_vendedor SERIAL PRIMARY KEY,      -- ID automático do vendedor
     nome_vendedor VARCHAR(255) NOT NULL  -- Nome do vendedor
 );
---Tabela de vendas
+
+-- Tabela de vendas
 CREATE TABLE vendas (
     id_pedido SERIAL NOT NULL,           -- Número do pedido (auto incrementa)
     id_vendedor INT NOT NULL,            -- Vendedor que fez a venda
@@ -31,23 +39,16 @@ CREATE TABLE vendas (
     qtd_vendida INT NOT NULL,            -- Quantidade de livros vendidos
     data_venda DATE NOT NULL,            -- Data da venda
     PRIMARY KEY (id_vendedor, id_pedido),-- Chave primária composta (cada pedido é único por vendedor)
--- Chaves estrangeiras
+    -- Chaves estrangeiras
     CONSTRAINT fk_vendas_vendedor
         FOREIGN KEY (id_vendedor)
         REFERENCES vendedores (id_vendedor)
-        ON DELETE CASCADE,               -- 
-        CONSTRAINT fk_vendas_livro
+        ON DELETE CASCADE,               -- Se o vendedor for apagado, suas vendas também saem
+    CONSTRAINT fk_vendas_livro
         FOREIGN KEY (id_livro)
         REFERENCES livros (id_livro)
         ON DELETE CASCADE                -- Se o livro for apagado, suas vendas também saem
 );
-
-INSERT INTO livros (nome_livro, autoria, editora, preco) VALUES
-('Percy Jackson e o Ladrão de Raios', 'Rick Riordan', 'Intrínseca', 34.65),
-('O Hobbit', 'J.R.R. Tolkien', 'HarperCollins', 42.90),
-('1984', 'George Orwell', 'Companhia das Letras', 29.50),
-('Dom Casmurro', 'Machado de Assis', 'L&PM', 19.80),
-('A Menina que Roubava Livros', 'Markus Zusak', 'Rocco', 36.20);
 
 -- ======================================
 -- INSERINDO DADOS NA TABELA LIVROS
@@ -78,20 +79,9 @@ INSERT INTO vendedores (nome_vendedor) VALUES
 ('Fernanda Silva'),
 ('João Pedro');
 
+-- ======================================
 -- INSERINDO DADOS NA TABELA VENDAS
-INSERT INTO estoque (id_livro, qtd_estoque) VALUES
-(1, 20),
-(2, 15),
-(3, 30),
-(4, 12),
-(5, 25);
---INSERINDO DADOS NA TABELA VENDEDORES
-INSERT INTO vendedores (nome_vendedor) VALUES
-('Ana Paula'),
-('Carlos Eduardo'),
-('Fernanda Silva'),
-('João Pedro');
---INSERINDO DADOS NA TABELA VENDAS
+-- ======================================
 INSERT INTO vendas (id_vendedor, id_livro, qtd_vendida, data_venda) VALUES
 (1, 1, 2, '2025-08-20'),
 (1, 3, 1, '2025-08-21'),
@@ -100,6 +90,10 @@ INSERT INTO vendas (id_vendedor, id_livro, qtd_vendida, data_venda) VALUES
 (3, 4, 2, '2025-08-23'),
 (4, 1, 1, '2025-08-23'),
 (4, 5, 2, '2025-08-24');
+
+-- ======================================
+-- CONSULTAS DE ANÁLISE
+-- ======================================
 
 -- Soma de livros vendidos por cada vendedor
 SELECT v.nome_vendedor,
@@ -143,4 +137,3 @@ JOIN vendedores v ON ve.id_vendedor = v.id_vendedor
 JOIN livros l ON ve.id_livro = l.id_livro
 GROUP BY v.nome_vendedor
 ORDER BY total_valor_vendas DESC;
-
